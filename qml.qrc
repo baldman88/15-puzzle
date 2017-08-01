@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Button.qml</file>
+        <file>Block.qml</file>
+        <file>GameField.qml</file>
+        <file>ControlsField.qml</file>
+    </qresource>
+</RCC>

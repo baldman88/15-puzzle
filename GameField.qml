@@ -41,8 +41,8 @@ Rectangle {
 
     function checkForCompletion() {
         var result = true
-        for(var j = (gameFieldGrid.children.length - 1); j > 0 ; j--) {
-            if ((gameFieldGrid.children[j - 1].currentPosition + 1) != gameFieldGrid.children[j - 1].label) {
+        for(var i = (gameFieldGrid.children.length - 1); i > 0 ; i--) {
+            if ((gameFieldGrid.children[i - 1].currentPosition + 1) != gameFieldGrid.children[i - 1].label) {
                 result = false
                 break
             }
@@ -54,37 +54,38 @@ Rectangle {
         }
     }
 
-    function onShuffleComplete() {
+    function makeShuffle() {
+        for(var i = (gameFieldGrid.children.length - 1); i > 0 ; i--) {
+            gameFieldGrid.children[i - 1].animationDuration = 0
+        }
+        for(i = (gameFieldGrid.children.length - 1); i > 0 ; i--) {
+                gameFieldGrid.children[i - 1].currentPosition = (gameFieldGrid.children[i - 1].label - 1)
+        }
+        emptyField.currentPosition = 15
+        for (var j = 0; j < 1000; j++) {
+            var shift = 1
+            if (Math.round(Math.random()) == 1) {
+                shift = 4
+            }
+            var sign = 1
+            if (Math.round(Math.random()) == 1) {
+                sign = -1
+            }
+            var newPosition = emptyField.currentPosition + (shift * sign)
+            if ((newPosition >= 0) && (newPosition <= 15)) {
+                var tmp = emptyField.currentPosition
+                for(i = (gameFieldGrid.children.length - 1); i > 0 ; i--) {
+                    if (gameFieldGrid.children[i - 1].currentPosition == newPosition) {
+                        emptyField.currentPosition = gameFieldGrid.children[i - 1].currentPosition
+                        gameFieldGrid.children[i - 1].currentPosition = tmp
+                        break
+                    }
+                }
+            }
+        }
+        for(i = (gameFieldGrid.children.length - 1); i > 0 ; i--) {
+            gameFieldGrid.children[i - 1].animationDuration = 200
+        }
         completePopup.visible = false
     }
-
-//    function makeShuffle() {
-//        for(var j = (gameFieldGrid.children.length - 1); j > 0 ; j--) {
-//            gameFieldGrid.children[j - 1].animationDuration = 0
-//        }
-//        for (var i = 0; i < 1000; i++) {
-//            var shift = 1
-//            if (Math.round(Math.random()) == 1) {
-//                shift = 4
-//            }
-//            var sign = 1
-//            if (Math.round(Math.random()) == 1) {
-//                sign = -1
-//            }
-//            var newPosition = emptyField.currentPosition + (shift * sign)
-//            if ((newPosition >= 0) && (newPosition <= 15)) {
-//                var tmp = emptyField.currentPosition
-//                for(j = (gameFieldGrid.children.length - 1); j > 0 ; j--) {
-//                    if (gameFieldGrid.children[j - 1].currentPosition == newPosition) {
-//                        emptyField.currentPosition = gameFieldGrid.children[j - 1].currentPosition
-//                        gameFieldGrid.children[j - 1].currentPosition = tmp
-//                        break
-//                    }
-//                }
-//            }
-//        }
-//        for(j = (gameFieldGrid.children.length - 1); j > 0 ; j--) {
-//            gameFieldGrid.children[j - 1].animationDuration = 200
-//        }
-//    }
 }

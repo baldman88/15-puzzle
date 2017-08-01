@@ -2,9 +2,9 @@ import QtQuick 2.0
 
 Rectangle {
     id: button
-    width: 100
-    height: 40
-    radius: 6
+    width: 150
+    height: 50
+    radius: 10
     color: releasedColor
     border.color: "black"
     border.width: 1
@@ -20,6 +20,7 @@ Rectangle {
         id: buttonLabel
         text: label;
         anchors.centerIn: parent
+        font.pointSize: 20
     }
 
     MouseArea {

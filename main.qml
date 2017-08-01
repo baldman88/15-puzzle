@@ -19,11 +19,13 @@ Window {
 
         ControlsField {
             id: controlsField
-            onShuffled: gameField.onShuffleComplete()
+            onShuffleButtonClicked: gameField.makeShuffle()
         }
 
         GameField {
             id: gameField
         }
     }
+
+    onActiveChanged: gameField.makeShuffle()
 }

@@ -1,2 +1,2 @@
 # 15-puzzle
-Simple 15-puzzle game for learning basics of the QML
+Simple puzzle game written for learning basics of QML
